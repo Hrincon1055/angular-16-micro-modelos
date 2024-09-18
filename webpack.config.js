@@ -16,7 +16,7 @@ switch (enviroment) {
     break;
   case "production":
     console.log("webpack.config LINE 20 => production");
-    publicPathUrl = "http://localhost:4201/";
+    publicPathUrl = "https://gregarious-bubblegum-562132.netlify.app/";
     break;
   default:
     console.log("webpack.config LINE 25 => default");
