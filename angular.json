@@ -15,24 +15,27 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/models-and-controls",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "_redirects", "input": "src", "output": "/" }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -48,7 +51,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -62,43 +66,65 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "modelsAndControls:build:production"
+              "browserTarget": "modelsAndControls:build:production",
+              "extraWebpackConfig": "webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "modelsAndControls:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201,
+            "publicHost": "http://localhost:4201",
+            "extraWebpackConfig": "webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "modelsAndControls:build"
+            "browserTarget": "modelsAndControls:build",
+            "extraWebpackConfig": "webpack.config.js"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
+            "scripts": [],
+            "karmaConfig": "src/karma.conf.js",
+            "codeCoverageExclude": [
+              "*/environment/*",
+              "*/app/domain/*",
+              "*/app/domain/stubs/*",
+              "*/app/domain/usecases/*",
+              "*/app/domain/mock/*",
+              "*/app/domain/interfaces/*",
+              "*/app/utils/*",
+              "*/app/shared/*",
+              "*/app/shared/footer/*",
+              "*/app/shared/header/*",
+              "*/app/shared/loading/*",
+              "*/app/shared/menu/*",
+              "*/app/shared/menu-item/*",
+              "*/app/shared/sidebar/*",
+              "*/app/infraestructure/ui/*",
+              "*/app/layouts/*",
+              "*/assets/i18n/*"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
