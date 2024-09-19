@@ -6,7 +6,7 @@ export const environment = {
   urlsMicro: {
     modelsAndControls: {
       remoteEntry:
-        'https://gregarious-bubblegum-562132.netlify.app//remoteEntry.js',
+        'https://gregarious-bubblegum-562132.netlify.app/remoteEntry.js',
       exposedModule: './ModelsAndControlsModule',
     },
   },
