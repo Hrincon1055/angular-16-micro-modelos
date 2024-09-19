@@ -1,12 +1,10 @@
-# netlify.toml
-
 [build]
   # Directorio de salida de la aplicación después del build
   publish = "dist/models-and-controls"  # Asegúrate de que este sea el directorio correcto donde están tus archivos estáticos
 
 [[headers]]
   # Aplicar encabezados CORS al archivo remoteEntry.js
-  for = "https://gregarious-bubblegum-562132.netlify.app/remoteEntry.js"
+  for = "/remoteEntry.js"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
