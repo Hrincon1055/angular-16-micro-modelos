@@ -6,7 +6,7 @@
 
 [[headers]]
   # Aplicar encabezados CORS al archivo remoteEntry.js
-  for = "https://gregarious-bubblegum-562132.netlify.app/remoteEntry.js"
+  for = "/remoteEntry.js"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
