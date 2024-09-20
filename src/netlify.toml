@@ -6,7 +6,7 @@
 
 [[headers]]
   # Aplicar encabezados CORS al archivo remoteEntry.js
-  for = "/models-and-controls/remoteEntry.js"
+   for = "/*.js"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
@@ -17,6 +17,12 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = false
 
 
 
