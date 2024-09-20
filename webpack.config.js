@@ -39,5 +39,6 @@ const moduleFederationConfig = withModuleFederationPlugin({
   },
 });
 
-moduleFederationConfig.output.publicPath = publicPathUrl;
+moduleFederationConfig.output.publicPath =
+  "https://gregarious-bubblegum-562132.netlify.app/";
 module.exports = moduleFederationConfig;
